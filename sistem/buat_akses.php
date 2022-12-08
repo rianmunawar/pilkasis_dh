@@ -49,7 +49,7 @@ if (isset($_POST['simpan'])) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Voting</title>
+  <title>PILKASIS</title>
   <link rel="icon" type="image/png" href="../images/faviconMA.ico" />
 
   <!-- BOOTSTRAP STYLES-->

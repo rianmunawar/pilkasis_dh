@@ -5,46 +5,6 @@ if (!isset($_SESSION["login"])) {
   exit;
 }
 include '../koneksi.php';
-
-if (isset($_POST['simpan'])) {
-  $NISN_ketua = mysqli_real_escape_string($koneksi, $_POST['NISN_ketua']);
-  $nm_paslon_ketua = mysqli_real_escape_string($koneksi, $_POST['nm_paslon_ketua']);
-  $NISN_wakil = mysqli_real_escape_string($koneksi, $_POST['NISN_wakil']);
-  $nm_paslon_wakil = mysqli_real_escape_string($koneksi, $_POST['nm_paslon_wakil']);
-  $no_urut = mysqli_real_escape_string($koneksi, $_POST['no_urut']);
-
-  if ($_POST['simpan']) {
-    $ekstensi_diperbolehkan = array('png', 'jpg', 'JPG');
-    $gambar1 = $_FILES['gambar1']['name'];
-    $x = explode('.', $gambar1);
-    $ekstensi = strtolower(end($x));
-    $ukuran = $_FILES['gambar1']['size'];
-    $file_tmp = $_FILES['gambar1']['tmp_name'];
-    if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
-      if ($ukuran <= 2000000) {
-        move_uploaded_file($file_tmp, 'foto/' . $gambar1);
-        $query = mysqli_query($koneksi, "INSERT INTO data_paslon VALUES(NULL, '$gambar1')");
-        $gambar2 = $_FILES['gambar2']['name'];
-        $x = explode('.', $gambar2);
-        $ekstensi = strtolower(end($x));
-        $ukuran = $_FILES['gambar2']['size'];
-        $file_tmp = $_FILES['gambar2']['tmp_name'];
-        if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
-          if ($ukuran <= 2000000) {
-            move_uploaded_file($file_tmp, 'foto/' . $gambar2);
-            $query = mysqli_query($koneksi, "INSERT INTO data_paslon VALUES(NULL, '$gambar2')");
-          }
-        }
-      }
-    }
-  }
-
-  mysqli_query($koneksi, "INSERT INTO data_paslon(id, NISN_ketua, nm_paslon_ketua, gambar1, NISN_wakil, nm_paslon_wakil, gambar2, no_urut)
-    VALUES ('','$NISN_ketua','$nm_paslon_ketua','$gambar1','$NISN_wakil','$nm_paslon_wakil','$gambar2','$no_urut')");
-
-  echo "<script>window.alert('Berhasil')
-    window.location='input_data_paslon.php'</script>";
-}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -151,22 +111,26 @@ if (isset($_POST['simpan'])) {
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-8">
             <div class="row">
               <div class="col-lg-12">
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered table-hover">
                     <tr>
                       <th>No Peserta</th>
+                      <th>Nama</th>
                       <th>Kode Akses</th>
                     </tr>
                     <?php
-                    $daftar_akses = mysqli_query($koneksi, "SELECT * FROM tbl_akses");
+                    $query = "SELECT * FROM tbl_akses 
+                              INNER JOIN tbl_dpt 
+                              ON tbl_akses.NISN = tbl_dpt.NISN";
+                    $daftar_akses = mysqli_query($koneksi, $query);
                     while ($d = mysqli_fetch_array($daftar_akses)) {
                     ?>
-                      <tr>
-                        <td><?php echo $d['NISN']; ?></td>
-                        <td><?php echo $d['kode_akses']; ?></td>
+                      <td><?php echo $d['NISN']; ?></td>
+                      <td><?php echo $d['nama_siswa']; ?></td>
+                      <td><?php echo $d['kode_akses']; ?></td>
                       </tr>
                     <?php } ?>
                   </table>
@@ -174,7 +138,7 @@ if (isset($_POST['simpan'])) {
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <a href="cetak.php" target="_blank" class="btn btn-primary">Cetak Data</a>
           </div>
         </div>
