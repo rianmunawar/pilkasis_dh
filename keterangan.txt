@@ -1,0 +1,5 @@
+Username: 1234567891
+kode Akses: RTYUI
+----------------------
+nama databasenya : [sesuaikan aja]
+settingg koneksi ke DB di koneksi.php
