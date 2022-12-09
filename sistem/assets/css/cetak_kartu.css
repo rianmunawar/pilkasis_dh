@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+.content {
+  border: 1px solid #000;
+  margin: auto;
+  background-color: #ffdb11;
+  width: 21cm;
+}
+
+.kartu_peserta {
+  border: 1px solid #000;
+  width: 70%;
+  margin: 0 auto 5px auto;
+}
+
+td {
+  padding: 5px 5px;
+  border: 1px solid #000;
+}
+
+thead tr td {
+  border: none;
+  padding: 10px;
+}
+
+thead tr td:nth-child(1) {
+  width: 80px;
+  border-bottom: 1px solid #000;
+}
+
+thead tr td:nth-child(2) {
+  width: fit-content;
+  border-bottom: 1px solid #000;
+}
+
+thead tr td p {
+  line-height: 10px;
+  font-size: 1rem;
+}
+
+tbody tr td {
+  border: none;
+}
+
+tbody tr td:nth-child(2) {
+  width: fit-content;
+}
+
+tr td em {
+  font-size: 0.9rem;
+}
+
+td[rowspan="3"] {
+  width: 120px;
+}
+
+.kop-img {
+  width: 50px;
+}
+
+.qr-code {
+  width: 70px;
+}

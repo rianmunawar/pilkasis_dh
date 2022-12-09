@@ -12,7 +12,7 @@ include '../koneksi.php';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Voting</title>
+  <title>PILKASIS</title>
   <link rel="icon" type="image/png" href="../images/faviconMA.ico" />
   <!-- BOOTSTRAP STYLES-->
   <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -140,6 +140,9 @@ include '../koneksi.php';
           </div>
           <div class="col-lg-4">
             <a href="cetak.php" target="_blank" class="btn btn-primary">Cetak Data</a>
+            <br>
+            <br>
+            <a href="cetak_kartu.php" target="_blank" class="btn btn-warning">Cetak Kartu</a>
           </div>
         </div>
 
