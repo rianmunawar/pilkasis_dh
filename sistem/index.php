@@ -215,7 +215,12 @@ if (isset($_POST['simpan'])) {
                         </table>
                       </div>
                     <?php } ?>
-                    <input style="color: white; font-size: 20px; padding: 10px; border-radius: 15px; width: 100%;" type="submit" name="simpan" value="Vote" class="btn btn-success" onclick="return confirm('YAKIN DENGAN PILIHAN ANDA')">
+                    <?php
+                    $data_paslon = mysqli_query($koneksi, "SELECT * FROM data_paslon");
+                    $jumlah_paslon = mysqli_num_rows($data_paslon);
+                    if ($jumlah_paslon >= 1) { ?>
+                      <input style="color: white; font-size: 20px; padding: 10px; border-radius: 15px; width: 100%;" type="submit" name="simpan" value="Vote" class="btn btn-success" onclick="return confirm('YAKIN DENGAN PILIHAN ANDA')">
+                    <?php } ?>
                   </form>
                 </div>
               </div>
