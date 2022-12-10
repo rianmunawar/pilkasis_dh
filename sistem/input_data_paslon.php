@@ -13,8 +13,9 @@ if (isset($_POST['simpan'])) {
   $nm_paslon_wakil = mysqli_real_escape_string($koneksi, $_POST['nm_paslon_wakil']);
   $no_urut = mysqli_real_escape_string($koneksi, $_POST['no_urut']);
 
+  // Handle Gambar
   if ($_POST['simpan']) {
-    $ekstensi_diperbolehkan = array('png', 'jpeg', 'JPG');
+    $ekstensi_diperbolehkan = array('png', 'jpeg', 'JPG', 'jpg', 'PNG');
     $gambar1 = $_FILES['gambar1']['name'];
     $x = explode('.', $gambar1);
     $ekstensi = strtolower(end($x));
